@@ -1,0 +1,7 @@
+$ /home/qj00433/miniconda3/condabin/conda run --no-capture-output -n lingbot-vla-eval python /home/qj00433/.lingbot-vla/repos/lingbot-vla/experiment/libero/libero/run_libero_eval.py --model_family instruct_vla --pretrained_checkpoint /home/qj00433/.lingbot-vla/models/lingbot-vla-4b --task_suite_name libero_10 --task_id 0 --num_trials_per_task 5 --seed 42 --local_log_dir /home/qj00433/guinsoo-vla-eval/outputs/20260618-165912-libero_10/raw_logs/lingbot_vla/upstream --use_wandb False
+
+Traceback (most recent call last):
+  File "/home/qj00433/.lingbot-vla/repos/lingbot-vla/experiment/libero/libero/run_libero_eval.py", line 20, in <module>
+    import tensorflow as tf
+ModuleNotFoundError: No module named 'tensorflow'
+ERROR conda.cli.main_run:execute(127): `conda run python /home/qj00433/.lingbot-vla/repos/lingbot-vla/experiment/libero/libero/run_libero_eval.py --model_family instruct_vla --pretrained_checkpoint /home/qj00433/.lingbot-vla/models/lingbot-vla-4b --task_suite_name libero_10 --task_id 0 --num_trials_per_task 5 --seed 42 --local_log_dir /home/qj00433/guinsoo-vla-eval/outputs/20260618-165912-libero_10/raw_logs/lingbot_vla/upstream --use_wandb False` failed. (See above for error)

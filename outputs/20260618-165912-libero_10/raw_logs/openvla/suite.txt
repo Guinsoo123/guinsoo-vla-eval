@@ -1,0 +1,7 @@
+$ /home/qj00433/miniconda3/condabin/conda run --no-capture-output -n openvla-eval python /home/qj00433/.openvla/repos/openvla/experiments/robot/libero/run_libero_eval.py --model_family openvla --pretrained_checkpoint /home/qj00433/.openvla/models/openvla-7b --task_suite_name libero_10 --num_trials_per_task 5 --seed 42 --center_crop True --local_log_dir /home/qj00433/guinsoo-vla-eval/outputs/20260618-165912-libero_10/raw_logs/openvla/upstream --use_wandb False
+
+Traceback (most recent call last):
+  File "/home/qj00433/.openvla/repos/openvla/experiments/robot/libero/run_libero_eval.py", line 29, in <module>
+    from libero.libero import benchmark
+ModuleNotFoundError: No module named 'libero.libero'
+ERROR conda.cli.main_run:execute(127): `conda run python /home/qj00433/.openvla/repos/openvla/experiments/robot/libero/run_libero_eval.py --model_family openvla --pretrained_checkpoint /home/qj00433/.openvla/models/openvla-7b --task_suite_name libero_10 --num_trials_per_task 5 --seed 42 --center_crop True --local_log_dir /home/qj00433/guinsoo-vla-eval/outputs/20260618-165912-libero_10/raw_logs/openvla/upstream --use_wandb False` failed. (See above for error)

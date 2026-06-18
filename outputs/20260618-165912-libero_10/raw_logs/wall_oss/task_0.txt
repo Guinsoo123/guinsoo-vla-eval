@@ -1,0 +1,25 @@
+$ /home/qj00433/miniconda3/condabin/conda run --no-capture-output -n wall-oss-eval python /home/qj00433/.wall-oss/repos/wall-x/scripts/infer_libero.py --checkpoint-path /home/qj00433/.wall-oss/models/wall-oss-0.5 --train-config-path /home/qj00433/.wall-oss/repos/wall-x/workspace/example/libero.yml --norm-key libero_all --task-suite-name libero_10 --task-indices 0 --num-trials-per-task 5 --seed 42 --num-workers 1 --max-batch-size 1 --log-dir /home/qj00433/guinsoo-vla-eval/outputs/20260618-165912-libero_10/videos/wall_oss
+
+Traceback (most recent call last):
+  File "/home/qj00433/.wall-oss/repos/wall-x/scripts/infer_libero.py", line 235, in <module>
+    raise SystemExit(main())
+  File "/home/qj00433/.wall-oss/repos/wall-x/scripts/infer_libero.py", line 230, in main
+    run(cfg)
+  File "/home/qj00433/.wall-oss/repos/wall-x/wall_x/_vendor/harrix/drivers/inproc/__init__.py", line 42, in run
+    model_handle = DirectModelHandle(cfg)
+  File "/home/qj00433/.wall-oss/repos/wall-x/wall_x/_vendor/harrix/drivers/inproc/model_handle.py", line 15, in __init__
+    self._adapter = build_adapter(cfg)
+  File "/home/qj00433/.wall-oss/repos/wall-x/wall_x/_vendor/harrix/adapters/registry.py", line 34, in build_adapter
+    return cls(cfg)
+  File "/home/qj00433/.wall-oss/repos/wall-x/wall_x/_vendor/harrix/adapters/qwen_vlact.py", line 123, in __init__
+    ta = self._training_adapter()
+  File "/home/qj00433/.wall-oss/repos/wall-x/wall_x/_vendor/harrix/adapters/variants/qwen2_5.py", line 15, in _training_adapter
+    from wall_x.model.qact.qwen2_5.adapter import Qwen2_5Adapter
+  File "/home/qj00433/.wall-oss/repos/wall-x/wall_x/model/qact/qwen2_5/__init__.py", line 2, in <module>
+    from .modeling_qwen2_5_vl_act import Qwen2_5_VLMoEForAction, Qwen2_5_VLMoEModel
+  File "/home/qj00433/.wall-oss/repos/wall-x/wall_x/model/qact/qwen2_5/modeling_qwen2_5_vl_act.py", line 57, in <module>
+    from wall_x.model.core.attention.joint import JOINT_QWEN_ATTENTION_CLASSES
+  File "/home/qj00433/.wall-oss/repos/wall-x/wall_x/model/core/attention/joint.py", line 5, in <module>
+    from flash_attn import flash_attn_func
+ModuleNotFoundError: No module named 'flash_attn'
+ERROR conda.cli.main_run:execute(127): `conda run python /home/qj00433/.wall-oss/repos/wall-x/scripts/infer_libero.py --checkpoint-path /home/qj00433/.wall-oss/models/wall-oss-0.5 --train-config-path /home/qj00433/.wall-oss/repos/wall-x/workspace/example/libero.yml --norm-key libero_all --task-suite-name libero_10 --task-indices 0 --num-trials-per-task 5 --seed 42 --num-workers 1 --max-batch-size 1 --log-dir /home/qj00433/guinsoo-vla-eval/outputs/20260618-165912-libero_10/videos/wall_oss` failed. (See above for error)

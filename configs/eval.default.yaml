@@ -1,0 +1,8 @@
+benchmark: libero
+task_suite: libero_10
+task_ids: [0, 1, 2]
+num_trials_per_task: 5
+seed: 42
+save_videos: true
+models: [wall_oss, lingbot_vla, openvla]
+output_root: outputs

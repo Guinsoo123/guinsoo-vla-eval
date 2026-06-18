@@ -1,0 +1,6 @@
+Task: move the mug to the left
+Success: False
+# episodes completed so far: 1
+Task: move the mug to the left
+Success: True
+# episodes completed so far: 2

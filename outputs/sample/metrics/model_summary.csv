@@ -1,0 +1,4 @@
+model_name,num_episodes,num_successes,num_failures,success_rate,mean_steps,runtime_seconds,seconds_per_episode
+lingbot_vla,2,2,0,1.0,,13.5,6.75
+openvla,2,1,1,0.5,,14.5,7.25
+wall_oss,2,1,1,0.5,,12.5,6.25

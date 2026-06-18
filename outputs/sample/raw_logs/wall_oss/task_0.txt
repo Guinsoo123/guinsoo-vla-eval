@@ -1,0 +1,6 @@
+Task: put the bowl on the plate
+Success: True
+# episodes completed so far: 1
+Task: put the bowl on the plate
+Success: False
+# episodes completed so far: 2

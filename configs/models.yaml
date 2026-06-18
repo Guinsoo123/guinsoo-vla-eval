@@ -1,0 +1,27 @@
+wall_oss:
+  display_name: WALL-OSS
+  conda_env: wall-oss-eval
+  repo_path: /home/qj00433/.wall-oss/repos/wall-x
+  model_path: /home/qj00433/.wall-oss/models/wall-oss-0.5
+  libero_path: /home/qj00433/.openvla/repos/LIBERO
+  train_config_path: /home/qj00433/.wall-oss/repos/wall-x/workspace/example/libero.yml
+  runner: wall_oss
+  task_filter_supported: true
+
+lingbot_vla:
+  display_name: LingBot-VLA
+  conda_env: lingbot-vla-eval
+  repo_path: /home/qj00433/.lingbot-vla/repos/lingbot-vla
+  model_path: /home/qj00433/.lingbot-vla/models/lingbot-vla-4b
+  libero_path: /home/qj00433/.openvla/repos/LIBERO
+  runner: lingbot_vla
+  task_filter_supported: true
+
+openvla:
+  display_name: OpenVLA
+  conda_env: openvla-eval
+  repo_path: /home/qj00433/.openvla/repos/openvla
+  model_path: /home/qj00433/.openvla/models/openvla-7b
+  libero_path: /home/qj00433/.openvla/repos/LIBERO
+  runner: openvla
+  task_filter_supported: false

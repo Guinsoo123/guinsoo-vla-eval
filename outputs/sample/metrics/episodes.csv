@@ -1,0 +1,7 @@
+model_name,task_suite,task_id,raw_task_id,task_description,episode_index,success,steps,runtime_seconds,failure_reason,raw_log
+wall_oss,libero_10,0,0,put the bowl on the plate,1,1,,12.500,,/home/qj00433/guinsoo-vla-eval/outputs/sample/raw_logs/wall_oss/task_0.txt
+wall_oss,libero_10,0,0,put the bowl on the plate,2,0,,12.500,not_successful,/home/qj00433/guinsoo-vla-eval/outputs/sample/raw_logs/wall_oss/task_0.txt
+lingbot_vla,libero_10,1,1,open the middle drawer,1,1,,13.500,,/home/qj00433/guinsoo-vla-eval/outputs/sample/raw_logs/lingbot_vla/task_1.txt
+lingbot_vla,libero_10,1,1,open the middle drawer,2,1,,13.500,,/home/qj00433/guinsoo-vla-eval/outputs/sample/raw_logs/lingbot_vla/task_1.txt
+openvla,libero_10,2,2,move the mug to the left,1,0,,14.500,not_successful,/home/qj00433/guinsoo-vla-eval/outputs/sample/raw_logs/openvla/task_2.txt
+openvla,libero_10,2,2,move the mug to the left,2,1,,14.500,,/home/qj00433/guinsoo-vla-eval/outputs/sample/raw_logs/openvla/task_2.txt
