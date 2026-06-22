@@ -19,7 +19,7 @@ from pathlib import Path
 
 from .config import EvalConfig, ModelConfig
 from .parsers import EpisodeRecord
-from .paths import ensure_dir, find_conda
+from .paths import ensure_dir, find_conda, libero_pythonpath, resolve_libero_repo_root
 
 _WS_RE = re.compile(r"\s+")
 
@@ -50,9 +50,7 @@ def normalize_desc(text: str) -> str:
 
 def _libero_env(libero_path: Path) -> dict[str, str]:
     env = os.environ.copy()
-    existing = env.get("PYTHONPATH", "")
-    additions = [str(libero_path), str(libero_path / "libero")]
-    env["PYTHONPATH"] = ":".join(additions + ([existing] if existing else []))
+    env["PYTHONPATH"] = libero_pythonpath(libero_path, env.get("PYTHONPATH", ""))
     env["LIBERO_PATH"] = str(libero_path)
     env["MUJOCO_GL"] = env.get("MUJOCO_GL", "egl")
     return env
@@ -69,6 +67,9 @@ def fetch_canonical_tasks(libero_path: str | Path, task_suite: str, conda_env: s
         "--no-capture-output",
         "-n",
         conda_env,
+        "env",
+        f"PYTHONPATH={libero_pythonpath(libero_path, os.environ.get('PYTHONPATH', ''))}",
+        f"LIBERO_PATH={resolve_libero_repo_root(libero_path)}",
         "python",
         "-c",
         _DUMP_SNIPPET,

@@ -27,7 +27,18 @@ def _save(fig: plt.Figure, path: Path) -> None:
     plt.close(fig)
 
 
+def _save_empty(path: Path, title: str, message: str = "No parsed evaluation episodes") -> None:
+    fig, ax = plt.subplots(figsize=(8, 4.5))
+    ax.axis("off")
+    ax.set_title(title)
+    ax.text(0.5, 0.5, message, ha="center", va="center", transform=ax.transAxes)
+    _save(fig, path)
+
+
 def plot_success_rate_by_model(model_rows: list[dict[str, str]], path: Path) -> None:
+    if not model_rows:
+        _save_empty(path, "LIBERO success rate by model")
+        return
     labels = [row["model_name"] for row in model_rows]
     values = [_float(row["success_rate"]) * 100 for row in model_rows]
     fig, ax = plt.subplots(figsize=(8, 4.5))
@@ -41,6 +52,9 @@ def plot_success_rate_by_model(model_rows: list[dict[str, str]], path: Path) -> 
 
 
 def plot_runtime_by_model(model_rows: list[dict[str, str]], path: Path) -> None:
+    if not model_rows:
+        _save_empty(path, "Evaluation runtime by model")
+        return
     labels = [row["model_name"] for row in model_rows]
     values = [_float(row["runtime_seconds"]) for row in model_rows]
     fig, ax = plt.subplots(figsize=(8, 4.5))
@@ -51,6 +65,9 @@ def plot_runtime_by_model(model_rows: list[dict[str, str]], path: Path) -> None:
 
 
 def plot_mean_steps_by_model(model_rows: list[dict[str, str]], path: Path) -> None:
+    if not model_rows:
+        _save_empty(path, "Mean episode steps by model")
+        return
     labels = [row["model_name"] for row in model_rows]
     values = [_float(row["mean_steps"]) for row in model_rows]
     fig, ax = plt.subplots(figsize=(8, 4.5))
@@ -65,6 +82,9 @@ def plot_mean_steps_by_model(model_rows: list[dict[str, str]], path: Path) -> No
 def plot_success_rate_by_task(task_rows: list[dict[str, str]], path: Path) -> None:
     models = sorted({row["model_name"] for row in task_rows})
     tasks = sorted({row["task_id"] for row in task_rows}, key=lambda x: int(x) if str(x).isdigit() else 999)
+    if not models or not tasks:
+        _save_empty(path, "Success rate by task (%)")
+        return
     matrix = [[0.0 for _ in tasks] for _ in models]
     for row in task_rows:
         matrix[models.index(row["model_name"])][tasks.index(row["task_id"])] = _float(row["success_rate"]) * 100
@@ -82,6 +102,9 @@ def plot_success_rate_by_task(task_rows: list[dict[str, str]], path: Path) -> No
 
 
 def plot_success_failure_stack(model_rows: list[dict[str, str]], path: Path) -> None:
+    if not model_rows:
+        _save_empty(path, "Success and failure counts")
+        return
     labels = [row["model_name"] for row in model_rows]
     successes = [int(float(row["num_successes"])) for row in model_rows]
     failures = [int(float(row["num_failures"])) for row in model_rows]

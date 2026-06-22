@@ -10,7 +10,7 @@ from pathlib import Path
 
 from .config import EvalConfig, ModelConfig
 from .parsers import EpisodeRecord, parse_libero_log
-from .paths import ensure_dir, find_conda
+from .paths import ensure_dir, find_conda, libero_pythonpath, resolve_libero_repo_root
 
 
 @dataclass
@@ -47,12 +47,7 @@ def create_run_dir(eval_cfg: EvalConfig) -> Path:
 
 def base_env(model_cfg: ModelConfig, run_dir: Path) -> dict[str, str]:
     env = os.environ.copy()
-    existing = env.get("PYTHONPATH", "")
-    additions = [
-        str(model_cfg.libero_path),
-        str(model_cfg.libero_path / "libero"),
-    ]
-    env["PYTHONPATH"] = ":".join(additions + ([existing] if existing else []))
+    env["PYTHONPATH"] = libero_pythonpath(model_cfg.libero_path, env.get("PYTHONPATH", ""))
     env["MUJOCO_GL"] = env.get("MUJOCO_GL", "egl")
     env["WANDB_MODE"] = env.get("WANDB_MODE", "disabled")
     env["GUINSOO_VLA_RUN_DIR"] = str(run_dir)
@@ -60,7 +55,17 @@ def base_env(model_cfg: ModelConfig, run_dir: Path) -> dict[str, str]:
 
 
 def conda_python(model_cfg: ModelConfig) -> list[str]:
-    return [find_conda(), "run", "--no-capture-output", "-n", model_cfg.conda_env, "python"]
+    return [
+        find_conda(),
+        "run",
+        "--no-capture-output",
+        "-n",
+        model_cfg.conda_env,
+        "env",
+        f"PYTHONPATH={libero_pythonpath(model_cfg.libero_path, os.environ.get('PYTHONPATH', ''))}",
+        f"LIBERO_PATH={resolve_libero_repo_root(model_cfg.libero_path)}",
+        "python",
+    ]
 
 
 def build_wall_command(model_cfg: ModelConfig, eval_cfg: EvalConfig, run_dir: Path, task_id: int | None) -> CommandSpec:
